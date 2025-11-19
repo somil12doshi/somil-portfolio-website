@@ -102,6 +102,24 @@ document.querySelectorAll('.stat-number').forEach(stat => {
     statObserver.observe(stat);
 });
 
+// Animate GPA on scroll
+const gpaObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const gpaNumber = entry.target;
+            const target = parseFloat(gpaNumber.getAttribute('data-target'));
+            if (!isNaN(target)) {
+                animateValue(gpaNumber, 0, target, 2000);
+                gpaObserver.unobserve(gpaNumber);
+            }
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.gpa-number').forEach(gpa => {
+    gpaObserver.observe(gpa);
+});
+
 // Parallax effect for hero section
 let ticking = false;
 
