@@ -1078,6 +1078,17 @@ section {
 
 .contact-form {
     padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: visible;
+}
+
+.contact-form .btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    position: relative;
+    display: block;
 }
 
 .form-group {
