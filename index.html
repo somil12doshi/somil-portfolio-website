@@ -454,7 +454,7 @@
                         <span>🎯 Accuracy: 94%</span>
                         <span>📊 F1 Score: 91%</span>
                     </div>
-                </a>
+                    </a>
                 <a href="https://doi.org/10.22214/ijraset.2023.55308" target="_blank" rel="noopener noreferrer" class="publication-card glass-effect">
                     <div class="publication-header">
                         <h3>Comparative Study of Fraudulent Activities and Various Fraud Detection Techniques</h3>
@@ -462,7 +462,7 @@
                     </div>
                     <p class="publication-journal">International Journal for Research in Applied Science & Engineering Technology (IJRASET)</p>
                     <p class="publication-description">Highlights the critical function of fraud detection systems in light of the rise in fraud across industries. Addresses fraud kinds including money laundering, cryptocurrency scams, credit card fraud, and mortgage fraud. Examines various fraud-detection methods like Bayesian networks, neural networks, and support vector machines, demonstrating an expanding toolbox.</p>
-                </a>
+                    </a>
                 <a href="https://doi.org/10.22214/ijraset.2023.54966" target="_blank" rel="noopener noreferrer" class="publication-card glass-effect">
                     <div class="publication-header">
                         <h3>Various Approaches to Object Detection using Deep Learning</h3>
@@ -470,7 +470,7 @@
                     </div>
                     <p class="publication-journal">International Journal for Research in Applied Science & Engineering Technology (IJRASET)</p>
                     <p class="publication-description">Focuses on using deep learning techniques, particularly CNNs, for practical object detection. Explores architectures like R-CNN, Fast R-CNN, Faster R-CNN, and YOLO to achieve accurate results. Demonstrates wide-ranging applications from automated vehicles to medical technology and industrial automation, with potential paradigm-shifting effects in the future.</p>
-                </a>
+                    </a>
             </div>
         </div>
     </section>
@@ -498,15 +498,15 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form glass-effect">
+                <form class="contact-form glass-effect" action="https://formspree.io/f/xnnwvanl" method="POST">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                        <input type="text" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
@@ -517,9 +517,19 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Somil Doshi. All rights reserved.</p>
+            <p>&copy; 2025 Somil Doshi. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Success Message Modal -->
+    <div id="success-modal" class="success-modal">
+        <div class="success-modal-content glass-effect">
+            <div class="success-icon">✓</div>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for reaching out. I'll get back to you soon.</p>
+            <button class="btn btn-primary" id="close-success-modal">Close</button>
+        </div>
+    </div>
 
     <script src="scripts/main.js"></script>
 </body>

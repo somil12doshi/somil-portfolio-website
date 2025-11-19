@@ -158,17 +158,89 @@ document.querySelectorAll('section').forEach(section => {
     sectionObserver.observe(section);
 });
 
-// Form submission
+// Form submission - Formspree integration
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // Add your form submission logic here
-        // For now, just show an alert
-        alert('Thank you for your message! I will get back to you soon.');
-        contactForm.reset();
+        
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        
+        // Show loading state
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                showSuccessModal();
+                contactForm.reset();
+            } else {
+                const data = await response.json();
+                if (data.errors) {
+                    throw new Error(data.errors.map(error => error.message).join(', '));
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            }
+        } catch (error) {
+            alert('Sorry, there was an error sending your message. Please try again or email me directly at somildoshi1202@gmail.com');
+            console.error('Form submission error:', error);
+        } finally {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
     });
 }
+
+// Success Modal Functions
+function showSuccessModal() {
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function hideSuccessModal() {
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+}
+
+// Close modal when clicking the close button
+const closeModalBtn = document.getElementById('close-success-modal');
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', hideSuccessModal);
+}
+
+// Close modal when clicking outside the modal content
+const successModal = document.getElementById('success-modal');
+if (successModal) {
+    successModal.addEventListener('click', (e) => {
+        if (e.target === successModal) {
+            hideSuccessModal();
+        }
+    });
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        hideSuccessModal();
+    }
+});
 
 // Active navigation link on scroll
 const sections = document.querySelectorAll('section[id]');
